@@ -1,7 +1,6 @@
 import requests
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
-import os
 
 API_KEY = "9d29aa8fedmshe0475eb04ccd58ep16d1c3jsna0ddf802b1f9"
 BOT_TOKEN = "8359485704:AAG3A965CMeFOkZGbx2wlPMtB6M4Mnrhfrc"
@@ -42,7 +41,7 @@ def handle_message(update, context):
     update.message.reply_text("Fetching info... ⏳")
 
     data = fetch_details(url)
-    title = data.get("title", "Unknown")
+    title = data.get("title", "Unknown Title")
 
     try:
         video_url = data["videos"]["items"][0]["url"]
@@ -61,8 +60,7 @@ def handle_message(update, context):
     ]
 
     update.message.reply_text(
-        f"{title}
-Choose format 👇",
+        f"{title}\nChoose format 👇",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
